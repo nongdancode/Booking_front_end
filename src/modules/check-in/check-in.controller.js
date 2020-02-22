@@ -2,7 +2,9 @@
     angular.module('module.check-in.controller', [])
         .controller('CheckInController', CheckInController);
 
-    function CheckInController($scope, $timeout, BookingService) {
+    function CheckInController($scope, $sce, BookingService) {
+        $scope.musicUrl = $sce.trustAsResourceUrl('https://www.youtube.com/embed/J3KSI1FkvaY?autoplay=1&loop=1');
+
         $scope.form = {
             info: {
                 name: 'Fermentum',
