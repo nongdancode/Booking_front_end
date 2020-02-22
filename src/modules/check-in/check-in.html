@@ -1,4 +1,14 @@
 <style>
+ .checkin-container {
+     color: #999;
+     background: #F1D1D4;
+     height: 100vh;
+     background-size: cover;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
  .wrapper {
      width: 826px;
      height: auto;
@@ -183,42 +193,43 @@
      pointer-events: none;
  }
 </style>
-
-<div class="wrapper">
-    <form name="templateForm" class="wizard" novalidate>
-        <div class="content">
-            <section>
-                <h4></h4>
-                <h3>Check in</h3>
-                <div class="form-row">
-                    <div class="form-holder w-100">
-                        <i class="zmdi zmdi-account"></i>
-                        <input type="text" class="form-control" ng-class="{ error: templateForm.name.$touched && templateForm.name.$invalid }"
-                               placeholder="Last Name" name="name" ng-model="form.info.name" required>
+<div class="checkin-container">
+    <div class="wrapper">
+        <form name="templateForm" class="wizard" novalidate>
+            <div class="content">
+                <section>
+                    <h4></h4>
+                    <h3>Check in</h3>
+                    <div class="form-row">
+                        <div class="form-holder w-100">
+                            <i class="zmdi zmdi-account"></i>
+                            <input type="text" class="form-control" ng-class="{ error: templateForm.name.$touched && templateForm.name.$invalid }"
+                                   placeholder="Last Name" name="name" ng-model="form.info.name" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-holder w-100">
-                        <i class="zmdi zmdi-account"></i>
-                        <input type="text" class="form-control" ng-class="{ error: templateForm.phone.$touched && templateForm.phone.$invalid }"
-                               placeholder="Phone Number" name="phone" ng-model="form.info.phone" required>
+                    <div class="form-row">
+                        <div class="form-holder w-100">
+                            <i class="zmdi zmdi-account"></i>
+                            <input type="text" class="form-control" ng-class="{ error: templateForm.phone.$touched && templateForm.phone.$invalid }"
+                                   placeholder="Phone Number" name="phone" ng-model="form.info.phone" required>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </div>
+                </section>
+            </div>
 
-        <div class="confirm">
-            <label><input ng-model="form.confirm.term" type="checkbox" /> I have read and understand the <a href="">Privacy policy</a></label>
-            <label><input ng-model="form.confirm.cookie" type="checkbox" /> I have read and agree to the <a href="">Term Of Use</a> and <a href="">Cookies Policy</a></label>
-        </div>
+            <div class="confirm">
+                <label><input ng-model="form.confirm.term" type="checkbox" /> I have read and understand the <a href="">Privacy policy</a></label>
+                <label><input ng-model="form.confirm.cookie" type="checkbox" /> I have read and agree to the <a href="">Term Of Use</a> and <a href="">Cookies Policy</a></label>
+            </div>
 
-        <div class="actions clearfix">
-            <ul role="menu" class="step-4">
-                <li class="hidden"></li>
-		<li ng-class="{ disabled: templateForm.$invalid || !(form.confirm.term && form.confirm.cookie) }">
-                    <a ng-click="done()" role="menuitem">Check in</a>
-		</li>
-            </ul>
-        </div>
-    </form>
+            <div class="actions clearfix">
+                <ul role="menu" class="step-4">
+                    <li class="hidden"></li>
+		    <li ng-class="{ disabled: templateForm.$invalid || !(form.confirm.term && form.confirm.cookie) }">
+                        <a ng-click="done()" role="menuitem">Check in</a>
+		    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
 </div>
