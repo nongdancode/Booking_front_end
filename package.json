@@ -1,0 +1,25 @@
+{
+  "name": "lash-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "serve ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.25",
+    "angular": "^1.7.9",
+    "angular-sanitize": "^1.7.9",
+    "angular-ui-mask": "^1.8.7",
+    "bootstrap": "^3.3.5",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
+    "ui-select": "^0.19.8"
+  },
+  "devDependencies": {
+    "serve": "^11.3.0"
+  }
+}

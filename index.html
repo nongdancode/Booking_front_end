@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Lash Client</title>
+
+        <!-- STYLE -->
+        <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+	    <link rel="stylesheet" href="assets/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+        <!-- LIBRARY -->
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/moment/min/moment.min.js"></script>
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+        <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+
+        <script src="node_modules/angular-ui-mask/dist/mask.min.js"></script>
+
+        <script src="node_modules/ui-select/dist/select.min.js"></script>
+
+        <script src="assets/js/datetimepicker.js"></script>
+        <script src="node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <link href="node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ui-select@0.19.8/dist/select.min.css">
+    </head>
+    <body>
+        <div ui-view></div>
+
+        <script>
+            window.config = {
+                baseApiUrl: 'http://lash.web3k.info/api/booking/'
+            };
+        </script>
+
+        <!-- MODULES -->
+        <script src="src/modules/check-in/check-in.module.js"></script>
+        <script src="src/modules/check-in/check-in.route.js"></script>
+        <script src="src/modules/check-in/check-in.controller.js"></script>
+
+        <script src="src/modules/booking-wizard/booking-wizard.module.js"></script>
+        <script src="src/modules/booking-wizard/booking-wizard.route.js"></script>
+        <script src="src/modules/booking-wizard/booking-wizard.controller.js"></script>
+
+        <!-- SERVICES -->
+        <script src="src/common/services/booking.service.js"></script>
+        <script src="src/common/services/utility.service.js"></script>
+
+        <!-- DIRECTIVES -->
+
+        <!-- MAIN APP -->
+        <script src="src/app.js"></script>
+        <script src="src/app.controller.js"></script>
+        <script src="src/app.run.js"></script>
+        <script src="src/app.config.js"></script>
+
+        <script>
+            (function () {
+                var src = 'https://cdn.jsdelivr.net/npm/eruda';
+                if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+                document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+                document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+            })();
+        </script>
+    </body>
+</html>
