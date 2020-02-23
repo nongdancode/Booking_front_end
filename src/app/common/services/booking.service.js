@@ -116,11 +116,7 @@
         };
 
         services.confirm = function(data) {
-            return $http.post(window.config.baseApiUrl + 'confirm', data)
-                .then(res => ({
-                    id: 1,
-                    price: 60
-                }));
+            return $http.post(window.config.baseApiUrl + 'confirm', data);
         };
 
         services.charge = function(data) {
