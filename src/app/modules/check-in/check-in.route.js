@@ -7,7 +7,7 @@
             .state('check-in', {
 	        url: '/check-in',
 	        controller: 'CheckInController',
-	        templateUrl: 'src/modules/check-in/check-in.html',
+	        templateUrl: 'app/modules/check-in/check-in.html',
                 cache: false
             });
     };

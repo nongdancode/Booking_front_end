@@ -7,7 +7,7 @@
             .state('booking-wizard', {
 	        url: '/booking-wizard',
 	        controller: 'BookingWizardController',
-	        templateUrl: 'src/modules/booking-wizard/booking-wizard.html',
+	        templateUrl: 'app/modules/booking-wizard/booking-wizard.html',
                 cache: false
             });
     };

@@ -1,0 +1,633 @@
+<style>
+    .lds-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+    .lds-facebook {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-facebook div {
+        display: inline-block;
+        position: absolute;
+        left: 8px;
+        width: 16px;
+        background: #E96B72;
+        animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+    .lds-facebook div:nth-child(1) {
+        left: 8px;
+        animation-delay: -0.24s;
+    }
+    .lds-facebook div:nth-child(2) {
+        left: 32px;
+        animation-delay: -0.12s;
+    }
+    .lds-facebook div:nth-child(3) {
+        left: 56px;
+        animation-delay: 0;
+    }
+    @keyframes lds-facebook {
+        0% {
+            top: 8px;
+            height: 64px;
+        }
+        50%, 100% {
+            top: 24px;
+            height: 32px;
+        }
+    }
+</style>
+
+<style>
+    .booking-container {
+        color: #999;
+        background: #F1D1D4;
+        height: 100vh;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-wrapper {
+        width: 826px;
+        height: auto;
+        padding: 50px 0;
+        padding-top: 0;
+        background: #fff;
+        box-shadow: 0px 0px 40px 30px pink;
+    }
+
+    .block {
+        padding: 0 100px;
+    }
+
+    .content > section > h3 {
+        font-size: 25px;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .show {
+        display: block !important;
+    }
+
+    .list {
+        min-height: 100px;
+    }
+
+    .list-item {
+        display: block;
+        margin: 20px 0px;
+        padding: 10px;
+        border: 1px solid #e6e6e6;
+        color: #999;
+    }
+
+    .list-item:first-child {
+        margin-top: 0px;
+    }
+
+    .list-item:last-child {
+        margin-bottom: 0px;
+    }
+
+    .list-item.active {
+        border-width: 1px;
+        border-color: #8eb852;
+    }
+
+    .img > img {
+        width:100%;
+        height:100%;
+        object-fit: contain;
+    }
+
+    .service-item .img {
+        display: inline-block;
+        height: 48px;
+        width: 48px;
+
+        margin-right: 10px;
+        background: #eee;
+    }
+
+    .service-item .text {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .employee-item .img {
+        display: inline-block;
+        height: 24px;
+        width: 24px;
+
+        margin-right: 10px;
+        background: #eee;
+    }
+
+    .employee-item .text {
+        display: inline-flex;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .space-between {
+        justify-content: space-between;
+    }
+
+    .w-10 {
+        width: 10%;
+    }
+
+    .w-20 {
+        width: 20%;
+    }
+
+    .w-30 {
+        width: 30%;
+    }
+
+    .w-40 {
+        width: 40%;
+    }
+
+    .w-50 {
+        width: 50%;
+    }
+
+    .w-60 {
+        width: 60%;
+    }
+
+    .w-70 {
+        width: 70%;
+    }
+
+    .w-80 {
+        width: 80%;
+    }
+
+    .w-90 {
+        width: 90%;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+
+    .flex-item {
+        flex-grow: 1;
+    }
+
+    .clickable {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    input.date-picker {
+        height: 100%;
+        width: 100%;
+
+        padding: 10px;
+        font-size: 12px;
+        width: 88px;
+
+        align-self: center;
+    }
+
+    input.error {
+        border: 1px solid red;
+    }
+
+    .summary {
+        width: 60%;
+        margin: auto;
+    }
+
+    .summary th {
+        padding: 11px 0;
+        width: 30%;
+        font-weight: bold;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .summary td {
+        vertical-align: top;
+        padding: 11px 0;
+    }
+
+    .confirm {
+        width: 60%;
+        margin: auto;
+        margin-top: 15px;
+    }
+
+    .confirm > label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .actions > ul > li.disabled > a {
+        background: #aaa;
+        pointer-events: none;
+    }
+
+    ul.navigation > li.disabled > a {
+        filter: grayscale(100%);
+        pointer-events: none;
+    }
+
+    .ui-select-container > a {
+        border: 1px solid #e6e6e6 !important;
+    }
+
+    .input-date-time-picker {
+        margin-right: 10px;
+    }
+
+    .input-date-time-picker > .form-control {
+        width: 100px;
+        height: 26px;
+        padding: 10px;
+    }
+
+    .input-date-time-picker > .input-group-addon {
+        padding: 4px;
+        height: 26px;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: space-between;
+
+        margin-bottom: 25px;
+
+        padding-left: 75px;
+        padding-top: 20px;
+        padding-right: 100px;
+        padding-bottom: 20px;
+
+        border-bottom: 4px solid #F1D1D4;
+    }
+
+    .logo > img.logo-1 {
+        width: 230px;
+    }
+
+    .logo > img.logo-2 {
+        width: 240px;
+        height: 60px;
+    }
+
+    .actions ul.center {
+        justify-content: center;
+    }
+
+    .actions ul.center li:first-child {
+        display: none;
+    }
+
+    .actions ul.center li a {
+        width: auto !important;
+        padding: 0 15px !important;
+    }
+
+    .select2-results .select2-highlighted:hover {
+        color: #666;
+    }
+
+    .payment-header {
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        padding-left: 2px;
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        border-radius: 0;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 30px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        background: white;
+        color: #CC5D63;
+
+        font-size: 20px;
+        font-weight: bolder;
+
+        width: 100%;
+        height: 60px;
+    }
+</style>
+
+<div class="lds-container" ng-if="loading">
+    <div class="lds-facebook"><div></div><div></div><div></div></div>
+</div>
+<div class="booking-container">
+    <div class="form-wrapper">
+        <form name="templateForm" class="wizard" novalidate>
+            <div class="logo">
+                <img class="logo-1" alt="Logo" src="assets/images/logo-2.png"/>
+                <img class="logo-2" alt="Logo" src="assets/images/logo-1.png"/>
+            </div>
+            <div class="block">
+                <div class="content" ng-switch="step" >
+                    <section ng-switch-when="1">
+                        <h4></h4>
+                        <h3>Basic details</h3>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <i class="zmdi zmdi-account"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.name.$touched && templateForm.name.$invalid }"
+                                    placeholder="Last Name" name="name" ng-model="form.info.name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <i class="zmdi zmdi-account"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.phone.$touched && templateForm.phone.$invalid }"
+                                    ui-mask="999-999-9999"
+                                    ui-mask-placeholder
+                                    ui-mask-placeholder-char="_"
+                                    placeholder="Phone Number" name="phone" ng-model="form.info.phone" required>
+                            </div>
+                        </div>
+                    </section>
+                    <section ng-switch-when="2">
+                        <h3>Pick Service</h3>
+
+                        <div class="list">
+                            <div class="list-item service-item clickable" ng-class="{ active: form.services[item.id].active }"
+                                ng-repeat="item in services"
+                                ng-click="form.services[item.id].active = !form.services[item.id].active">
+                                <div class="img">
+                                    <img alt="" ng-src="{{ item.img }}"/>
+                                </div>
+                                <span class="text">{{ item.name }}</span>
+                            </div>
+                        </div>
+                    </section>
+                    <section ng-switch-when="3">
+                        <h3>Pick Employee</h3>
+
+                        <div class="list">
+                            <div class="list-item flex space-between"
+                                ng-repeat="item in services"
+                                ng-if="form.services[item.id].active">
+
+                                <div class="flex-item service-item w-70">
+                                    <div class="img">
+                                        <img alt="" ng-src="{{ item.img }}"/>
+                                    </div>
+
+                                    <div class="text">{{ item.name }}</div>
+                                </div>
+
+                                <div class="flex-item w-30">
+                                    <ui-select class="w-100" ng-model="form.services[item.id].employeeId" theme="select2" title="Choose a employee" append-to-body="1">
+                                        <ui-select-match placeholder="Select a employee">
+                                            {{ $select.selected.name }}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="employee.id as employee in employees | filter:{ service_id: item.id } | propsFilter: { name: $select.search }">
+                                            <div class="flex-item employee-item">
+                                                <div class="img">
+                                                    <img alt="" ng-src="{{ employee.img }}"/>
+                                                </div>
+
+                                                <div class="text" ng-bind-html="employee.name | highlight: $select.search"></div>
+                                            </div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section ng-switch-when="4">
+                        <h3>Pick Date</h3>
+
+                        <div class="list">
+                            <div class="list-item flex space-between"
+                                ng-repeat="item in services"
+                                ng-if="form.services[item.id].active">
+
+                                <div class="flex flex-item service-item w-80" style="align-items: center">
+                                    <div class="img">
+                                        <img alt="" ng-src="{{ item.img }}"/>
+                                    </div>
+
+                                    <div style="display: inline-flex; flex-flow: column">
+                                        <span>{{ item.name }}</span>
+                                        <b><small>Employee: {{ employeesMap[form.services[item.id].employeeId].name }}</small></b>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-item" style="justify-content: flex-end">
+                                    <div class="input-group input-date-time-picker" datetimepicker
+                                        ng-model="form.services[item.id].date"
+                                        options="{
+                                        format: 'MM/DD/YYYY',
+                                        enabledDates: util.keys(availableTimes[form.services[item.id].employeeId]).map(util.toMoment)
+                                        }" >
+                                        <input class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+                                    <ui-select ng-if="form.services[item.id].date" style="width: 120px;" ng-model="form.services[item.id].time" theme="select2" title="Choose time" append-to-body="1">
+                                        <ui-select-match placeholder="Select time">
+                                            {{ $select.selected.text }}
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                            repeat="time.value as time in
+                                            availableTimes[form.services[item.id].employeeId][form.services[item.id].date.startOf('day').valueOf()] | propsFilter: { text: $select.search }">
+                                            <div class="flex-item">
+                                                <div class="text" ng-bind-html="time.text | highlight: $select.search"></div>
+                                            </div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section ng-switch-when="5">
+                        <h4></h4>
+                        <h3>Summary</h3>
+                        <div class="summary">
+                            <table cellspacing="0">
+                                <tr>
+                                    <th>Name</th>
+                                    <td data-title="Subtotal">
+                                        <span>{{ form.info.name }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Phone</th>
+                                    <td data-title="Subtotal">
+                                        <span>{{ form.info.phone }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Services</th>
+                                    <td>
+                                        <div ng-repeat="item in services"
+                                            ng-if="form.services[item.id].active"
+                                            style="margin-bottom: 5px;">
+                                            <span>{{ item.name }} by <b>{{ employeesMap[form.services[item.id].employeeId].name }}</b></span>
+                                            <span>at
+                                                <b>{{ form.services[item.id].time.start.valueOf() | date:'short' }}</b>
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+                    <section ng-switch-when="6">
+                        <h3>Payment</h3>
+
+                        <div style="border: 2px solid #eee; border-radius: 10px; padding: 20px; display: flex; justify-content: space-between; margin-bottom: 20px">
+                            <ul class="w-70" style="border-right: 2px solid #eee;">
+                                <li ng-repeat="item in services"
+                                    ng-if="form.services[item.id].active">
+                                    <span>{{ item.name }} by <b>{{ employeesMap[form.services[item.id].employeeId].name }}</b></span>
+                                    <span>at
+                                        <b>{{ form.services[item.id].time.start.valueOf() | date:'short' }}</b>
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <div class="w-30" style="display: flex; justify-content: center; align-items: center">
+                                <span style="font-size: 40px; font-weight: bold; color: #E96B72">{{ bookingInfo.price }}$</span>
+                            </div>
+                        </div>
+
+                        <hr/>
+
+                        <span class="payment-header">Credit Card</span>
+
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <i class="zmdi zmdi-card"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.cardNumber.$touched && templateForm.cardNumber.$invalid }"
+                                    ui-mask="9999-9999-9999-9999"
+                                    ui-mask-placeholder
+                                    ui-mask-placeholder-char="_"
+                                    placeholder="Card Number" name="cardNumber" ng-model="form.payment.cardNumber" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <i class="zmdi zmdi-account"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.cardName.$touched && templateForm.cardName.$invalid }"
+                                    placeholder="Name On Card" name="cardName" ng-model="form.payment.cardName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-calendar"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.cardExpiry.$touched && templateForm.cardExpiry.$invalid }"
+                                    ui-mask="99/99"
+                                    ui-mask-placeholder
+                                    ui-mask-placeholder-char="_"
+                                    placeholder="Expiry Date" name="cardExpiry" ng-model="form.payment.cardExpiry" required>
+                            </div>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-shield-security"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.cardCVV.$touched && templateForm.cardCVV.$invalid }"
+                                    ui-mask="999"
+                                    ui-mask-placeholder
+                                    ui-mask-placeholder-char="_"
+                                    placeholder="Security Code" name="cardCVV" ng-model="form.payment.cardCVV" required>
+                            </div>
+                        </div>
+
+                        <hr/>
+
+                        <span class="payment-header">Billing Address</span>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <i class="zmdi zmdi-city"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.streetAddress.$touched && templateForm.streetAddress.$invalid }"
+                                    placeholder="Street Address" name="streetAddress" ng-model="form.address.streetAddress" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder" style="width: 34% !important;">
+                                <i class="zmdi zmdi-city-alt"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.city.$touched && templateForm.city.$invalid }"
+                                    placeholder="City" name="city" ng-model="form.address.city" required>
+                            </div>
+                            <div class="form-holder" style="width: 33% !important;">
+                                <i class="zmdi zmdi-folder-star-alt"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.state.$touched && templateForm.state.$invalid }"
+                                    placeholder="State" name="state" ng-model="form.address.state" required>
+                            </div>
+                            <div class="form-holder" style="width: 33% !important;">
+                                <i class="zmdi zmdi-code"></i>
+                                <input type="text" class="form-control" ng-class="{ error: templateForm.zipCode.$touched && templateForm.zipCode.$invalid }"
+                                    placeholder="Zip Code" name="zipCode" ng-model="form.address.zipCode" required>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="confirm" ng-class="{ hidden: step !== 5 }">
+                    <label><input ng-model="form.confirm.term" type="checkbox" /> I have read and understand the <a href="">Privacy policy</a></label>
+                    <label><input ng-model="form.confirm.cookie" type="checkbox" /> I have read and agree to the <a href="">Term Of Use</a> and <a href="">Cookies Policy</a></label>
+                </div>
+
+                <div class="actions clearfix">
+	                <ul role="menu" ng-class="{ 'center': step > 4 }">
+		                <li ng-class="{ hidden: step > 4 }">
+                            <a ng-click="prevStep()" role="menuitem">Back</a>
+		                </li>
+		                <li ng-class="{ hidden: step > 4, disabled: disableNext(templateForm) }">
+                            <a ng-click="nextStep()" role="menuitem">Continue</a>
+		                </li>
+		                <li class="hidden" ng-class="{ show: step === 5 , disabled: disableNext(templateForm) }">
+                            <a ng-click="book()" role="menuitem">Proceed to checkout</a>
+		                </li>
+                        <li class="hidden" ng-class="{ show: step === 6 , disabled: disableNext(templateForm) }">
+                            <a ng-click="charge()" role="menuitem">Complete Transaction</a>
+		                </li>
+	                </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="footer">
+    Promotion: DISCOUNT 10% ALL SERVICE FOR NEW CUSTOMERS
+</div>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Lash Client</title>
+
+        <!-- inject:css -->
+        <link rel="stylesheet" href="vendor/vendor.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+        <link rel="stylesheet" href="assets/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+        <!-- endinject -->
+    </head>
+    <body>
+        <div ui-view></div>
+
+        <!-- inject:js -->
+        <script src="vendor/vendor.min.js"></script>
+        <script src="app/app.config.js"></script>
+        <script src="app/app.controller.js"></script>
+        <script src="app/app.core.js"></script>
+        <script src="app/app.js"></script>
+        <script src="app/app.run.js"></script>
+        <script src="assets/js/datetimepicker.js"></script>
+        <script src="app/common/services/booking.service.js"></script>
+        <script src="app/common/services/utility.service.js"></script>
+        <script src="app/modules/check-in/check-in.controller.js"></script>
+        <script src="app/modules/check-in/check-in.module.js"></script>
+        <script src="app/modules/check-in/check-in.route.js"></script>
+        <script src="app/modules/booking-wizard/booking-wizard.controller.js"></script>
+        <script src="app/modules/booking-wizard/booking-wizard.module.js"></script>
+        <script src="app/modules/booking-wizard/booking-wizard.route.js"></script>
+        <!-- endinject -->
+
+        <script>
+            (function () {
+                var src = 'https://cdn.jsdelivr.net/npm/eruda';
+                if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+                document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+                document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+            })();
+        </script>
+    </body>
+</html>
