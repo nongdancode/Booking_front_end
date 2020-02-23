@@ -213,7 +213,6 @@
                         })
                 },
                 payment: {
-                    id: this.bookingInfo.id,
                     ...this.form.payment,
                     ...this.form.address
                 }
