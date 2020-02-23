@@ -137,7 +137,7 @@
                             let start = moment.unix(start_time);
                             let end = moment.unix(end_time);
 
-                            while (start.add(serviceStepping, 'minutes') <= end) {
+                            while (moment(start).add(serviceStepping, 'minutes') <= end) {
                                 let _start = moment(start);
                                 let _end = moment(start).add(serviceStepping, 'minutes');
 
@@ -149,7 +149,7 @@
                                     }
                                 });
 
-                                start = start.add(serviceStepping, 'minutes');
+                                start = moment(start).add(serviceStepping, 'minutes');
                             }
                         });
 
