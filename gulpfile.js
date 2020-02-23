@@ -5,12 +5,14 @@ const inject = require('gulp-inject');
 const clean = require('gulp-clean');
 const sequence = require('gulp-sequence');
 const merge = require('merge-stream');
+const babel = require('gulp-babel');
 
 const sass = require('gulp-sass');
 const htmlclean = require('gulp-htmlclean');
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
+const obfuscator = require('gulp-javascript-obfuscator');
 const ngHtml2Js = require("gulp-ng-html2js");
 
 const vendor = require('./vendor');
@@ -138,6 +140,9 @@ gulp.task('html:dist', function () {
     }))
     .pipe(concat('lib-2.app.template.min.js'))
     .pipe(uglify())
+    .pipe(obfuscator({
+      compact: true
+    }))
     .pipe(gulp.dest(paths.dist));
 });
 
@@ -153,6 +158,9 @@ gulp.task('css:dist', function () {
 
 gulp.task('js:dist', function () {
   return gulp.src([paths.srcJS])
+    .pipe(babel({
+      presets: ['es2015', 'stage-0']
+    }))
     .pipe(concat('lib-3.app.min.js'))
     .pipe(uglify({
       mangle: false
