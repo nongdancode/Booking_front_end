@@ -99,7 +99,10 @@ gulp.task('serve', ['inject'], function () {
   return gulp.src(paths.dev)
     .pipe(webserver({
       port: 3000,
-      livereload: true
+      livereload: {
+        enable: true,
+        port: 3001
+      }
     }));
 });
 
@@ -184,7 +187,10 @@ gulp.task('serve:dist', ['inject:dist'], function () {
   return gulp.src(paths.dist)
     .pipe(webserver({
       port: 3000,
-      livereload: true
+      livereload: {
+        enable: true,
+        port: 3001
+      }
     }));
 });
 
