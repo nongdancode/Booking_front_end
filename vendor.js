@@ -17,5 +17,8 @@ module.exports = {
         "node_modules/bootstrap/dist/css/bootstrap.min.css",
         "node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
         "node_modules/ui-select/dist/select.min.css"
+    ],
+    font: [
+        "node_modules/bootstrap/dist/fonts/*.{otf,ttf,woff,woff2}"
     ]
 };
