@@ -116,11 +116,13 @@
         };
 
         services.confirm = function(data) {
-            return $http.post(window.config.baseApiUrl + 'confirm', data);
+            return $http.post(window.config.baseApiUrl + 'confirm', data)
+                .then(res => res.data);
         };
 
         services.charge = function(data) {
-            return $http.post(window.config.baseApiUrl + 'charge', data);
+            return $http.post(window.config.baseApiUrl + 'charge', data)
+                .then(res => res.data);
         };
 
         return services;
