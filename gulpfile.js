@@ -134,7 +134,7 @@ gulp.task('html:dist', function () {
   return gulp.src(paths.srcHTML)
     .pipe(htmlclean())
     .pipe(ngHtml2Js({
-      moduleName: "app.templates",
+      moduleName: "app.templates"
     }))
     .pipe(concat('lib-2.app.template.min.js'))
     .pipe(uglify())
