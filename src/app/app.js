@@ -16,8 +16,7 @@ angular.module('app.services', [
 angular.module('app.directives', []);
 
 angular.module('app.modules', [
-    'module.booking-wizard',
-    'module.check-in'
+    'module.booking'
 ]);
 
 angular.module('app', [
