@@ -4,7 +4,9 @@ const webserver = require('gulp-webserver');
 const inject = require('gulp-inject');
 const clean = require('gulp-clean');
 const sequence = require('gulp-sequence');
+const merge = require('merge-stream');
 
+const sass = require('gulp-sass');
 const htmlclean = require('gulp-htmlclean');
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
@@ -18,6 +20,7 @@ const paths = {
   srcIndex: 'src/index.html',
   srcHTML: 'src/**/*.html',
   srcCSS: 'src/**/*.css',
+  srcSCSS: 'src/**/*.scss',
   srcJS: 'src/**/*.js',
   srcVendorJS: vendor.js,
   srcVendorCSS: vendor.css,
@@ -58,7 +61,11 @@ gulp.task('html', function () {
 });
 
 gulp.task('css', function () {
-  return gulp.src(paths.srcCSS).pipe(gulp.dest(paths.dev));
+  return merge(
+    gulp.src(paths.srcCSS),
+    gulp.src(paths.srcSCSS)
+      .pipe(sass())
+  ).pipe(gulp.dest(paths.dev));
 });
 
 gulp.task('js', function () {
@@ -135,8 +142,11 @@ gulp.task('html:dist', function () {
 });
 
 gulp.task('css:dist', function () {
-  return gulp.src(paths.srcCSS)
-    .pipe(concat('lib-3.app.min.css'))
+  return merge(
+    gulp.src(paths.srcCSS),
+    gulp.src(paths.srcSCSS)
+      .pipe(sass())
+  ).pipe(concat('lib-3.app.min.css'))
     .pipe(cleanCSS())
     .pipe(gulp.dest(paths.dist));
 });
