@@ -2,13 +2,12 @@
     angular.module('service.booking', [])
         .factory('BookingService', BookingService);
 
-    function BookingService($http) {
+    function BookingService(HttpService) {
         const services = {};
 
         services.findServices = function() {
-            return $http
+            return HttpService
                 .get(window.config.baseApiUrl + 'list_services')
-                .then(res => res.data)
                 .catch(err => [
                     {
                         id: 1,
@@ -38,9 +37,8 @@
         };
 
         services.findEmployees = function() {
-            return $http
+            return HttpService
                 .get(window.config.baseApiUrl + 'list_employee')
-                .then(res => res.data)
                 .catch(err => [
                     {
                         id: 1,
@@ -116,12 +114,12 @@
         };
 
         services.confirm = function(data) {
-            return $http.post(window.config.baseApiUrl + 'confirm', data)
+            return HttpService.post(window.config.baseApiUrl + 'confirm', data)
                 .then(res => res.data);
         };
 
         services.charge = function(data) {
-            return $http.post(window.config.baseApiUrl + 'charge', data)
+            return HttpService.post(window.config.baseApiUrl + 'charge', data)
                 .then(res => res.data);
         };
 

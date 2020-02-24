@@ -15,6 +15,7 @@ try {
 angular.module('app.resources', []);
 
 angular.module('app.services', [
+    'service.http',
     'service.booking',
     'service.utility'
 ]);
