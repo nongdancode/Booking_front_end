@@ -16,10 +16,6 @@
   });
 
   module.config(function($httpProvider) {
-    $httpProvider.defaults.headers = {
-      'Content-Type': 'application/json;charset=utf-8'
-    };
-
     $httpProvider.interceptors.push('HttpInterceptor');
   });
 

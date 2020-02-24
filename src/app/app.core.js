@@ -1,3 +1,3 @@
 window.config = {
-    baseApiUrl: 'http://api.beautysalonappsolution.com/api/booking/'
+    baseApiUrl: 'http://f74947aa.ngrok.io/api/booking/'
 };
