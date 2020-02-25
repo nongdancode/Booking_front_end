@@ -2,8 +2,9 @@
     const module = angular.module('module.booking.containers.booking-wizard', []);
 
     class BookingWizardComponent {
-        constructor($scope, $timeout, BookingService) {
+        constructor($scope, $state, $timeout, BookingService) {
             this.$scope = $scope;
+            this.$state = $state;
             this.$timeout = $timeout;
             this.BookingService = BookingService;
         }
@@ -182,7 +183,15 @@
             };
 
             this.BookingService.confirm(data).then(res => {
-                this.bookingInfo = res;
+                if (res.code) {
+                    this.reset();
+
+                    alert(res.error || 'Booking failed! Please retry');
+
+                    return;
+                }
+
+                this.bookingInfo = res.data;
 
                 this.$timeout(() => {
                     this.loading = false;
@@ -220,6 +229,14 @@
                 this.$timeout(() => {
                     this.loading = false;
                 });
+
+                if (res.code === 0) {
+                    return;
+                }
+
+                this.reset();
+
+                alert(res.error || 'Booking failed! Please retry');
             });
         };
 
@@ -254,6 +271,21 @@
             }
             }
         };
+
+        reset() {
+            this.setStep(1);
+
+            this.form = {
+                info: {},
+                confirm: {
+                    term: false,
+                    cookie: false
+                },
+                services: {},
+                payment: {},
+                address: {}
+            };
+        }
     }
 
     module.component('bookingWizard', {
