@@ -7,7 +7,7 @@
 
         services.findServices = function() {
             return HttpService
-                .get(window.config.baseApiUrl + 'list_services')
+                .get(window.config.baseApiUrl + 'booking/list_services')
                 .catch(err => [
                     {
                         id: 1,
@@ -38,7 +38,7 @@
 
         services.findEmployees = function() {
             return HttpService
-                .get(window.config.baseApiUrl + 'list_employee')
+                .get(window.config.baseApiUrl + 'booking/list_employee')
                 .catch(err => [
                     {
                         id: 1,
@@ -114,12 +114,17 @@
         };
 
         services.confirm = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'confirm', data)
+            return HttpService.post(window.config.baseApiUrl + 'booking/confirm', data)
                 .then(res => res.data);
         };
 
         services.charge = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'charge', data)
+            return HttpService.post(window.config.baseApiUrl + 'booking/charge', data)
+                .then(res => res.data);
+        };
+
+        services.checkin = function(data) {
+            return HttpService.post(window.config.baseApiUrl + 'checkin/customer', data)
                 .then(res => res.data);
         };
 

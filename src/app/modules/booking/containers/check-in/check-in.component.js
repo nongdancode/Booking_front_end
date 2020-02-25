@@ -13,14 +13,16 @@
 
             this.form = {
                 info: {
-                    name: 'Fermentum',
-                    phone: '0123456789'
+                    name: '',
+                    phone: ''
                 }
             };
         }
 
         done() {
-            console.log(this.form);
+            this.BookingService.checkin(this.form.info).then(res => {
+                alert('Check-in successfully!');
+            });
         };
     }
 

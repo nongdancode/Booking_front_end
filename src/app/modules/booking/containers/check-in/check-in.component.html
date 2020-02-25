@@ -311,14 +311,17 @@
                             <div class="form-holder w-100">
                                 <i class="zmdi zmdi-account"></i>
                                 <input type="text" class="form-control" ng-class="{ error: templateForm.name.$touched && templateForm.name.$invalid }"
-                                       placeholder="Last Name" name="name" ng-model="$ctrl.form.info.name" required>
+                                       placeholder="Name" name="name" ng-model="$ctrl.form.info.name" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-holder w-100">
-                                <i class="zmdi zmdi-account"></i>
-                                <input type="text" class="form-control" ng-class="{ error: templateForm.phone.$touched && templateForm.phone.$invalid }"
-                                       placeholder="Phone Number" name="phone" ng-model="$ctrl.form.info.phone" required>
+                              <i class="zmdi zmdi-account"></i>
+                              <input type="text" class="form-control" ng-class="{ error: templateForm.phone.$touched && templateForm.phone.$invalid }"
+                                ui-mask="999-999-9999"
+                                ui-mask-placeholder
+                                ui-mask-placeholder-char="_"
+                                placeholder="Phone Number" name="phone" ng-model="$ctrl.form.info.phone" required>
                             </div>
                         </div>
                     </section>
