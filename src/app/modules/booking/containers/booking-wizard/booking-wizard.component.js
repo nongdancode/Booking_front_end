@@ -226,17 +226,17 @@
                     ...this.form.address
                 }
             }).then(res => {
-                if (res.code) {
-                    this.reset();
-
-                    alert(res.error || 'Booking failed! Please retry');
-
-                    return;
-                }
-
                 this.$timeout(() => {
                     this.loading = false;
                 });
+
+                if (res.code === 0) {
+                    return;
+                }
+
+                this.reset();
+
+                alert(res.error || 'Booking failed! Please retry');
             });
         };
 
