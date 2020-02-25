@@ -114,18 +114,15 @@
         };
 
         services.confirm = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'booking/confirm', data)
-                .then(res => res.data);
+            return HttpService.post(window.config.baseApiUrl + 'booking/confirm', data);
         };
 
         services.charge = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'booking/charge', data)
-                .then(res => res.data);
+            return HttpService.post(window.config.baseApiUrl + 'booking/charge', data);
         };
 
         services.checkin = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'checkin/customer', data)
-                .then(res => res.data);
+            return HttpService.post(window.config.baseApiUrl + 'checkin/customer', data);
         };
 
         return services;
