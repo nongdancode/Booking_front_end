@@ -193,15 +193,15 @@
             };
 
             this.BookingService.confirm(data).then(res => {
-                if (res.code) {
+                if (res.code === 0) {
+                    this.bookingInfo = res.data;
+                } else {
                     this.reset();
 
                     alert(res.error || 'Booking failed! Please retry');
 
                     return;
                 }
-
-                this.bookingInfo = res.data;
 
                 this.$timeout(() => {
                     this.loading = false;
