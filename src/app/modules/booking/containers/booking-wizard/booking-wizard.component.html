@@ -53,31 +53,89 @@
 </style>
 
 <style>
+  @media (min-width: 767px) {
+    .logo {
+      justify-content: space-between !important;
+    }
+
+    .logo-2 {
+      display: block !important;
+    }
+
+    .wizard {
+      padding: 40px 20px 20px;
+    }
+
+    .block {
+      padding: 0 90px 0 100px !important;
+    }
+
+    .footer {
+      font-size: 20px !important;
+    }
+
+    .form-wrapper {
+      margin-top: 0 !important;
+      padding-bottom: 50px;
+    }
+
+    .content {
+      max-height: 500px !important;
+    }
+
+    .form-address > .form-holder {
+      width: 33% !impotant;
+    }
+
+    .booking-price {
+      font-size: 40px !important;
+    }
+  }
+
+  .booking-price {
+    font-size: 25px;
+    font-weight: bold;
+    color: #E96B72
+  }
+
+  .actions ul {
+    flex-direction: row;
+  }
+
+  .form-address > .form-holder {
+    width: 100%;
+  }
+
   .booking-container {
     color: #999;
     background: #F1D1D4;
-    height: 100vh;
     background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    height: calc(var(--vh, 1vh) * 100);
+    width: calc(var(--vh, 1vw) * 100);
   }
 
   .form-wrapper {
+    margin-top: -100px;
     width: 826px;
     height: auto;
-    padding: 50px 0;
-    padding-top: 0;
     background: #fff;
     box-shadow: 0px 0px 40px 30px pink;
   }
 
   .block {
-    padding: 0 90px 0 100px;
+    padding: 10px;
+  }
+
+  .wizard {
+    padding: 10px;
   }
 
   .content {
-    max-height: 500px;
+    max-height: 400px;
     overflow-y: auto;
     padding-right: 10px;
   }
@@ -288,7 +346,7 @@
 
   .logo {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     margin-bottom: 25px;
 
@@ -301,11 +359,14 @@
   }
 
   .logo > img.logo-1 {
-    width: 230px;
+    width: 100%;
+    max-width: 230px;
   }
 
   .logo > img.logo-2 {
-    width: 240px;
+    display: none;
+    width: 100%;
+    max-width: 240px;
     height: 60px;
   }
 
@@ -349,7 +410,7 @@
     background: white;
     color: #CC5D63;
 
-    font-size: 20px;
+    font-size: 12px;
     font-weight: bolder;
 
     width: 100%;
@@ -537,7 +598,7 @@
               </ul>
 
               <div class="w-30" style="display: flex; justify-content: center; align-items: center">
-                <span style="font-size: 40px; font-weight: bold; color: #E96B72">{{ $ctrl.bookingInfo.price }}$</span>
+                <span class="booking-price">{{ $ctrl.bookingInfo.price }}$</span>
               </div>
             </div>
 
@@ -591,18 +652,18 @@
                   placeholder="Street Address" name="streetAddress" ng-model="$ctrl.form.address.streetAddress" required>
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-holder" style="width: 34% !important;">
+            <div class="form-row form-address">
+              <div class="form-holder">
                 <i class="zmdi zmdi-city-alt"></i>
                 <input type="text" class="form-control" ng-class="{ error: templateForm.city.$touched && templateForm.city.$invalid }"
                   placeholder="City" name="city" ng-model="$ctrl.form.address.city" required>
               </div>
-              <div class="form-holder" style="width: 33% !important;">
+              <div class="form-holder">
                 <i class="zmdi zmdi-folder-star-alt"></i>
                 <input type="text" class="form-control" ng-class="{ error: templateForm.state.$touched && templateForm.state.$invalid }"
                   placeholder="State" name="state" ng-model="$ctrl.form.address.state" required>
               </div>
-              <div class="form-holder" style="width: 33% !important;">
+              <div class="form-holder">
                 <i class="zmdi zmdi-code"></i>
                 <input type="text" class="form-control" ng-class="{ error: templateForm.zipCode.$touched && templateForm.zipCode.$invalid }"
                   placeholder="Zip Code" name="zipCode" ng-model="$ctrl.form.address.zipCode" required>
