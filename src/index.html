@@ -1,29 +1,31 @@
 <!doctype html>
 <html lang="en" ng-app="app">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Lash Client</title>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css" />
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css" />
+    <title>Lash Client</title>
 
-        <!-- inject:css -->
-        <!-- endinject -->
-    </head>
-    <body>
-        <div ui-view></div>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css" />
 
-        <!-- inject:js -->
-        <!-- endinject -->
+    <!-- inject:css -->
+    <!-- endinject -->
+  </head>
+  <body>
+    <div ui-view></div>
 
-        <script>
-            (function () {
-                var src = 'https://cdn.jsdelivr.net/npm/eruda';
-                if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
-                document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-                document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
-            })();
-        </script>
-    </body>
+    <!-- inject:js -->
+    <!-- endinject -->
+
+    <script>
+      (function () {
+        var src = 'https://cdn.jsdelivr.net/npm/eruda';
+        if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+        document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+        document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+      })();
+    </script>
+  </body>
 </html>
