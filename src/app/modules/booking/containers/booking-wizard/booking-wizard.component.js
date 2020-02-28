@@ -65,6 +65,8 @@
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
                 document.documentElement.style.setProperty('--vw', `${vw}px`);
             });
+
+            this.setStep(5);
         }
 
         setStep(step) {

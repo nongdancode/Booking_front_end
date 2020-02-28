@@ -1,350 +1,350 @@
 <style>
- .checkin-container {
-     color: #999;
-     background: #F1D1D4;
-     height: 100vh;
-     background-size: cover;
-     display: flex;
-     align-items: center;
-     justify-content: center;
- }
+  .checkin-container {
+    color: #999;
+    background: #F1D1D4;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
- .form-wrapper {
-     width: 826px;
-     height: auto;
-     padding: 50px 0;
-     padding-top: 0;
-     background: #fff;
-     box-shadow: 0px 0px 40px 30px pink;
- }
+  .form-wrapper {
+    width: 826px;
+    height: auto;
+    padding: 50px 0;
+    padding-top: 0;
+    background: #fff;
+    box-shadow: 0px 0px 40px 30px pink;
+  }
 
- .block {
-     padding: 0 100px;
- }
+  .block {
+    padding: 0 100px;
+  }
 
- .content > section > h3 {
-     font-size: 25px;
- }
+  .content > section > h3 {
+    font-size: 25px;
+  }
 
- .hidden {
-     display: none !important;
- }
+  .hidden {
+    display: none !important;
+  }
 
- .show {
-     display: block !important;
- }
+  .show {
+    display: block !important;
+  }
 
- .list {
-     min-height: 100px;
- }
+  .list {
+    min-height: 100px;
+  }
 
- .list-item {
-     display: block;
-     margin: 20px 0px;
-     padding: 10px;
-     border: 1px solid #e6e6e6;
-     color: #999;
- }
+  .list-item {
+    display: block;
+    margin: 20px 0px;
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+    color: #999;
+  }
 
- .list-item:first-child {
-     margin-top: 0px;
- }
+  .list-item:first-child {
+    margin-top: 0px;
+  }
 
- .list-item:last-child {
-     margin-bottom: 0px;
- }
+  .list-item:last-child {
+    margin-bottom: 0px;
+  }
 
- .list-item.active {
-     border-width: 1px;
-     border-color: #8eb852;
- }
+  .list-item.active {
+    border-width: 1px;
+    border-color: #8eb852;
+  }
 
- .img > img {
-     width:100%;
-     height:100%;
-     object-fit: contain;
- }
+  .img > img {
+    width:100%;
+    height:100%;
+    object-fit: contain;
+  }
 
- .service-item .img {
-     display: inline-block;
-     height: 48px;
-     width: 48px;
+  .service-item .img {
+    display: inline-block;
+    height: 48px;
+    width: 48px;
 
-     margin-right: 10px;
-     background: #eee;
- }
+    margin-right: 10px;
+    background: #eee;
+  }
 
- .service-item .text {
-     display: inline-flex;
-     align-items: center;
- }
+  .service-item .text {
+    display: inline-flex;
+    align-items: center;
+  }
 
- .employee-item .img {
-     display: inline-block;
-     height: 24px;
-     width: 24px;
+  .employee-item .img {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
 
-     margin-right: 10px;
-     background: #eee;
- }
+    margin-right: 10px;
+    background: #eee;
+  }
 
- .employee-item .text {
-     display: inline-flex;
-     align-items: center;
-     font-size: 12px;
- }
+  .employee-item .text {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+  }
 
- .flex {
-     display: flex;
-     align-items: center;
- }
+  .flex {
+    display: flex;
+    align-items: center;
+  }
 
- .space-between {
-     justify-content: space-between;
- }
+  .space-between {
+    justify-content: space-between;
+  }
 
- .w-10 {
-     width: 10%;
- }
+  .w-10 {
+    width: 10%;
+  }
 
- .w-20 {
-     width: 20%;
- }
+  .w-20 {
+    width: 20%;
+  }
 
- .w-30 {
-     width: 30%;
- }
+  .w-30 {
+    width: 30%;
+  }
 
- .w-40 {
-     width: 40%;
- }
+  .w-40 {
+    width: 40%;
+  }
 
- .w-50 {
-     width: 50%;
- }
+  .w-50 {
+    width: 50%;
+  }
 
- .w-60 {
-     width: 60%;
- }
+  .w-60 {
+    width: 60%;
+  }
 
- .w-70 {
-     width: 70%;
- }
+  .w-70 {
+    width: 70%;
+  }
 
- .w-80 {
-     width: 80%;
- }
+  .w-80 {
+    width: 80%;
+  }
 
- .w-90 {
-     width: 90%;
- }
+  .w-90 {
+    width: 90%;
+  }
 
- .w-100 {
-     width: 100%;
- }
+  .w-100 {
+    width: 100%;
+  }
 
- .flex-item {
-     flex-grow: 1;
- }
+  .flex-item {
+    flex-grow: 1;
+  }
 
- .clickable {
-     cursor: pointer;
-     user-select: none;
- }
+  .clickable {
+    cursor: pointer;
+    user-select: none;
+  }
 
- input.date-picker {
-     height: 100%;
-     width: 100%;
+  input.date-picker {
+    height: 100%;
+    width: 100%;
 
-     padding: 10px;
-     font-size: 12px;
-     width: 88px;
+    padding: 10px;
+    font-size: 12px;
+    width: 88px;
 
-     align-self: center;
- }
+    align-self: center;
+  }
 
- input.error {
-     border: 1px solid red;
- }
+  input.error {
+    border: 1px solid red;
+  }
 
- .summary {
-     width: 60%;
-     margin: auto;
- }
+  .summary {
+    width: 60%;
+    margin: auto;
+  }
 
- .summary th {
-     padding: 11px 0;
-     width: 30%;
-     font-weight: bold;
-     text-align: left;
-     vertical-align: top;
- }
+  .summary th {
+    padding: 11px 0;
+    width: 30%;
+    font-weight: bold;
+    text-align: left;
+    vertical-align: top;
+  }
 
- .summary td {
-     vertical-align: top;
-     padding: 11px 0;
- }
+  .summary td {
+    vertical-align: top;
+    padding: 11px 0;
+  }
 
- .confirm {
-     width: 60%;
-     margin: auto;
-     margin-top: 15px;
- }
+  .confirm {
+    width: 60%;
+    margin: auto;
+    margin-top: 15px;
+  }
 
- .confirm > label {
-     display: block;
-     margin-bottom: 5px;
- }
+  .confirm > label {
+    display: block;
+    margin-bottom: 5px;
+  }
 
- .actions > ul > li.disabled > a {
-     background: #aaa;
-     pointer-events: none;
- }
+  .actions > ul > li.disabled > a {
+    background: #aaa;
+    pointer-events: none;
+  }
 
- ul.navigation > li.disabled > a {
-     filter: grayscale(100%);
-     pointer-events: none;
- }
+  ul.navigation > li.disabled > a {
+    filter: grayscale(100%);
+    pointer-events: none;
+  }
 
- .ui-select-container > a {
-     border: 1px solid #e6e6e6 !important;
- }
+  .ui-select-container > a {
+    border: 1px solid #e6e6e6 !important;
+  }
 
- .input-date-time-picker {
-     margin-right: 10px;
- }
+  .input-date-time-picker {
+    margin-right: 10px;
+  }
 
- .input-date-time-picker > .form-control {
-     width: 100px;
-     height: 26px;
-     padding: 10px;
- }
+  .input-date-time-picker > .form-control {
+    width: 100px;
+    height: 26px;
+    padding: 10px;
+  }
 
- .input-date-time-picker > .input-group-addon {
-     padding: 4px;
-     height: 26px;
- }
+  .input-date-time-picker > .input-group-addon {
+    padding: 4px;
+    height: 26px;
+  }
 
- .logo {
-     display: flex;
-     justify-content: space-between;
+  .logo {
+    display: flex;
+    justify-content: space-between;
 
-     margin-bottom: 25px;
+    margin-bottom: 25px;
 
-     padding-left: 75px;
-     padding-top: 20px;
-     padding-right: 100px;
-     padding-bottom: 20px;
+    padding-left: 75px;
+    padding-top: 20px;
+    padding-right: 100px;
+    padding-bottom: 20px;
 
-     border-bottom: 4px solid #F1D1D4;
- }
+    border-bottom: 4px solid #F1D1D4;
+  }
 
- .logo > img.logo-1 {
-     width: 230px;
- }
+  .logo > img.logo-1 {
+    width: 230px;
+  }
 
- .logo > img.logo-2 {
-     width: 240px;
-     height: 60px;
- }
+  .logo > img.logo-2 {
+    width: 240px;
+    height: 60px;
+  }
 
- .actions ul.center {
-     justify-content: center;
- }
+  .actions ul.center {
+    justify-content: center;
+  }
 
- .actions ul.center li:first-child {
-     display: none;
- }
+  .actions ul.center li:first-child {
+    display: none;
+  }
 
- .actions ul.center li a {
-     width: auto !important;
-     padding: 0 15px !important;
- }
+  .actions ul.center li a {
+    width: auto !important;
+    padding: 0 15px !important;
+  }
 
- .select2-results .select2-highlighted:hover {
-     color: #666;
- }
+  .select2-results .select2-highlighted:hover {
+    color: #666;
+  }
 
- .payment-header {
-     display: block;
-     font-size: 16px;
-     font-weight: bold;
-     padding-left: 2px;
-     margin-bottom: 10px;
- }
+  .payment-header {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 2px;
+    margin-bottom: 10px;
+  }
 
- .form-control {
-     border-radius: 0;
- }
+  .form-control {
+    border-radius: 0;
+  }
 
- .footer {
-     position: fixed;
-     bottom: 30px;
+  .footer {
+    position: fixed;
+    bottom: 30px;
 
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     height: 100px;
-     background: white;
-     color: #CC5D63;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background: white;
+    color: #CC5D63;
 
-     font-size: 20px;
-     font-weight: bolder;
+    font-size: 20px;
+    font-weight: bolder;
 
-     width: 100%;
-     height: 60px;
- }
+    width: 100%;
+    height: 60px;
+  }
 </style>
 <div class="checkin-container">
-    <div class="form-wrapper">
-        <form name="templateForm" class="wizard" novalidate>
-            <div class="logo">
-                <img class="logo-1" alt="Logo" src="assets/images/logo-2.png"/>
-                <img class="logo-2" alt="Logo" src="assets/images/logo-1.png"/>
+  <div class="form-wrapper">
+    <form name="templateForm" class="wizard" novalidate>
+      <div class="logo">
+        <img class="logo-1" alt="Logo" src="assets/images/logo-2.png"/>
+        <img class="logo-2" alt="Logo" src="assets/images/logo-1.png"/>
+      </div>
+      <div class="block">
+        <div class="content">
+          <section>
+            <h4></h4>
+            <h3>Check in</h3>
+            <div class="form-row">
+              <div class="form-holder w-100">
+                <i class="zmdi zmdi-account"></i>
+                <input type="text" class="form-control" ng-class="{ error: templateForm.name.$touched && templateForm.name.$invalid }"
+                  placeholder="Name" name="name" ng-model="$ctrl.form.info.name" required>
+              </div>
             </div>
-            <div class="block">
-                <div class="content">
-                    <section>
-                        <h4></h4>
-                        <h3>Check in</h3>
-                        <div class="form-row">
-                            <div class="form-holder w-100">
-                                <i class="zmdi zmdi-account"></i>
-                                <input type="text" class="form-control" ng-class="{ error: templateForm.name.$touched && templateForm.name.$invalid }"
-                                       placeholder="Name" name="name" ng-model="$ctrl.form.info.name" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-holder w-100">
-                              <i class="zmdi zmdi-account"></i>
-                              <input type="text" class="form-control" ng-class="{ error: templateForm.phone.$touched && templateForm.phone.$invalid }"
-                                ui-mask="999-999-9999"
-                                ui-mask-placeholder
-                                ui-mask-placeholder-char="_"
-                                placeholder="Phone Number" name="phone" ng-model="$ctrl.form.info.phone" required>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+            <div class="form-row">
+              <div class="form-holder w-100">
+                <i class="zmdi zmdi-account"></i>
+                <input type="text" class="form-control" ng-class="{ error: templateForm.phone.$touched && templateForm.phone.$invalid }"
+                  ui-mask="999-999-9999"
+                  ui-mask-placeholder
+                  ui-mask-placeholder-char="_"
+                  placeholder="Phone Number" name="phone" ng-model="$ctrl.form.info.phone" required>
+              </div>
+            </div>
+          </section>
+        </div>
 
-                <div class="confirm">
-                    <label><input ng-model="$ctrl.form.confirm.term" type="checkbox" /> I have read and understand the <a href="">Privacy policy</a></label>
-                    <label><input ng-model="$ctrl.form.confirm.cookie" type="checkbox" /> I have read and agree to the <a href="">Term Of Use</a> and <a href="">Cookies Policy</a></label>
-                </div>
+        <div class="confirm">
+          <label><input ng-model="$ctrl.form.confirm.term" type="checkbox" /> I have read and understand the <a href="/#!/term-of-service" target="_blank">Privacy policy</a></label>
+          <label><input ng-model="$ctrl.form.confirm.cookie" type="checkbox" /> I have read and agree to the <a href="/#!/term-of-service" target="_blank">Term Of Use</a> and <a href="/#!/term-of-service" target="_blank">Cookies Policy</a></label>
+        </div>
 
-                <div class="actions clearfix">
-                    <ul role="menu" class="step-4">
-                        <li class="hidden"></li>
+        <div class="actions clearfix">
+          <ul role="menu" class="step-4">
+            <li class="hidden"></li>
 		        <li ng-class="{ disabled: templateForm.$invalid || !($ctrl.form.confirm.term && $ctrl.form.confirm.cookie) }">
-                            <a ng-click="$ctrl.done()" role="menuitem">Check in</a>
+              <a ng-click="$ctrl.done()" role="menuitem">Check in</a>
 		        </li>
-                    </ul>
-                </div>
-            </div>
-        </form>
-    </div>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <iframe width="420" height="315" frameborder="0" allowfullscreen
-        style="display:none;"
-        ng-src="{{ musicUrl }}"></iframe>
+  style="display:none;"
+  ng-src="{{ musicUrl }}"></iframe>
