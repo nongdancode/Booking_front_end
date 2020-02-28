@@ -27,7 +27,6 @@
             this.employees = [];
             this.employeesMap = {};
 
-            this.availableTimes = {};
             this.bookingInfo = {};
 
             this.form = {
@@ -96,7 +95,24 @@
                 this.loading = true;
 
                 this.BookingService.findEmployees().then(employees => {
-                    this.employees = employees;
+                    this.employees = employees
+                        .reduce((result, employee) => {
+                            if (!Object.keys(employee.available || {}).length) {
+                                return result;
+                            }
+
+                            const stepping = this.servicesMap[employee.service_id].stepping;
+                            const times = this.generateTimeRange(employee, stepping);
+
+                            if (!Object.keys(times || {}).length) {
+                                return result;
+                            }
+
+                            return [
+                                ...result,
+                                {...employee, times}
+                            ];
+                        }, []);
 
                     this.$timeout(() => {
                         this.loading = false;
@@ -105,56 +121,23 @@
                 });
                 break;
             }
-
             case 4: {
-                this.loading = true;
-
                 const employeeIds = Object.values(this.form.services)
                       .filter(item => item.active)
                       .map(item => item.employeeId);
 
                 employeeIds.forEach(id => {
-                    this.availableTimes[id] = Object.keys((this.employeesMap[id].available || {}))
-                        .filter(timestamp => timestamp > moment().unix())
-                        .reduce((result, timestamp) => {
+                    const serviceId = this.employeesMap[id].service_id;
 
-                            const availableOptions = [];
+                    const defaultDate = moment.unix(
+                        Object.keys(this.employeesMap[id].available)
+                            .filter(timestamp => timestamp > moment().unix())[0].valueOf()
+                    );
 
-                            this.employeesMap[id].available[timestamp].forEach(({start_time, end_time}) => {
-                                const serviceStepping = this.servicesMap[this.employeesMap[id].service_id].stepping;
-
-                                let start = moment.unix(start_time);
-                                let end = moment.unix(end_time);
-
-                                while (moment(start).add(serviceStepping, 'minutes') <= end) {
-                                    let _start = moment(start);
-                                    let _end = moment(start).add(serviceStepping, 'minutes');
-
-                                    availableOptions.push({
-                                        text: `${_start.format('hh:mm A')}`,
-                                        value: {
-                                            start: _start,
-                                            end: _end
-                                        }
-                                    });
-
-                                    start = moment(start).add(serviceStepping, 'minutes');
-                                }
-                            });
-
-                            return {
-                                ...result,
-                                [moment.unix(timestamp).startOf('day').valueOf()]: availableOptions
-                            };
-                        }, {});
-
-                    this.form.services[this.employeesMap[id].service_id].date = moment(+Object.keys(this.availableTimes[id])[0]);
+                    this.form.services[serviceId].date = defaultDate;
                 });
 
-                this.loading = false;
                 this.step = step;
-
-                break;
             }
             default: {
                 this.loading = false;
@@ -162,6 +145,61 @@
             }
             }
         };
+
+        generateTimeRange(employee, stepping) {
+            return Object.keys((employee.available || {}))
+                .filter(timestamp => timestamp > moment().unix())
+                .reduce((result, timestamp) => {
+
+                    const availableOptions = [];
+
+                    employee.available[timestamp].forEach(({start_time, end_time}) => {
+                        let start = moment.unix(start_time);
+                        let end = moment.unix(end_time);
+
+                        while (moment(start).add(stepping, 'minutes') <= end) {
+                            let _start = moment(start);
+                            let _end = moment(start).add(stepping, 'minutes');
+
+                            availableOptions.push({
+                                text: `${_start.format('hh:mm A')}`,
+                                value: {
+                                    start: _start,
+                                    end: _end
+                                }
+                            });
+
+                            start = moment(start).add(stepping, 'minutes');
+                        }
+                    });
+
+                    return {
+                        ...result,
+                        [moment.unix(timestamp).startOf('day').valueOf()]: availableOptions
+                    };
+                }, {});
+        }
+
+        onDateChange(service) {
+            // const employeeId = this.form.services[service.id].employeeId;
+
+            // const defaultTime = this.employeesMap[employeeId].times[0].value;
+
+            // this.form.services[service.id].time = defaultTime;
+        }
+
+        getEnabledDate(service) {
+            const employeeId = this.form.services[service.id].employeeId;
+
+            return Object.keys(this.employeesMap[employeeId].times).map(this.util.toMoment);
+        }
+
+        getAvailableTimes(service) {
+            const employeeId = this.form.services[service.id].employeeId;
+            const date = this.form.services[service.id].date.startOf('day').valueOf();
+
+            return this.employeesMap[employeeId].times[date];
+        }
 
         nextStep() {
             this.setStep(Math.min(this.step + 1, this.maxStep));
@@ -171,10 +209,8 @@
             this.setStep(Math.max(this.step - 1, 1));
         };
 
-        book() {
-            this.loading = true;
-
-            const data = {
+        getBookingResult() {
+            return {
                 info: this.form.info,
                 services: Object.keys(this.form.services)
                     .filter(serviceId => this.form.services[serviceId].active)
@@ -183,7 +219,7 @@
 
                         return {
                             serviceId: serviceId,
-                            employeeId: service.employeeId,
+                            employeeId: service.employeeId.split('_')[0],
                             timeRange: {
                                 start: service.time.start.valueOf(),
                                 end: service.time.end.valueOf()
@@ -191,8 +227,12 @@
                         };
                     })
             };
+        }
 
-            this.BookingService.confirm(data).then(res => {
+        book() {
+            this.loading = true;
+
+            this.BookingService.confirm(this.getBookingResult()).then(res => {
                 if (res.code === 0) {
                     this.bookingInfo = res.data;
                 } else {
@@ -214,23 +254,7 @@
             this.loading = true;
 
             this.BookingService.charge({
-                booking: {
-                    info: this.form.info,
-                    services: Object.keys(this.form.services)
-                        .filter(serviceId => this.form.services[serviceId].active)
-                        .map(serviceId => {
-                            const service = this.form.services[serviceId];
-
-                            return {
-                                serviceId: serviceId,
-                                employeeId: service.employeeId,
-                                timeRange: {
-                                    start: service.time.start.valueOf(),
-                                    end: service.time.end.valueOf()
-                                }
-                            };
-                        })
-                },
+                booking: this.getBookingResult(),
                 payment: {
                     ...this.form.payment,
                     ...this.form.address

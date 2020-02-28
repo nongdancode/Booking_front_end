@@ -531,10 +531,10 @@
                 <div class="flex flex-item" style="justify-content: flex-end">
                   <div class="input-group input-date-time-picker" datetimepicker
                     ng-model="$ctrl.form.services[item.id].date"
-                    on-change="$ctrl.form.services[item.id].time = $ctrl.availableTimes[$ctrl.form.services[item.id].employeeId][$ctrl.form.services[item.id].date.startOf('day').valueOf()][0].value"
+                    on-change="$ctrl.onDateChange(item)"
                     options="{
                     format: 'MM/DD/YYYY',
-                    enabledDates: $ctrl.util.keys($ctrl.availableTimes[$ctrl.form.services[item.id].employeeId]).map($ctrl.util.toMoment),
+                    enabledDates: $ctrl.getEnabledDate(item),
                     showClose: true
                     }" >
                     <input class="form-control" />
@@ -543,13 +543,13 @@
                     </span>
                   </div>
 
-                  <ui-select ng-if="$ctrl.form.services[item.id].date" style="width: 120px;" ng-model="$ctrl.form.services[item.id].time" theme="select2" title="Choose time" append-to-body="1">
+                  <ui-select ng-if="$ctrl.form.services[item.id].date" ng-model="$ctrl.form.services[item.id].time"
+                    theme="select2" title="Choose time" append-to-body="1" style="width: 120px;" >
                     <ui-select-match placeholder="Select time">
                       {{ $select.selected.text }}
                     </ui-select-match>
                     <ui-select-choices
-                      repeat="time.value as time in
-                      $ctrl.availableTimes[$ctrl.form.services[item.id].employeeId][$ctrl.form.services[item.id].date.startOf('day').valueOf()] | propsFilter: { text: $select.search }">
+                      repeat="time.value as time in $ctrl.getAvailableTimes(item)">
                       <div class="flex-item">
                         <div class="text" ng-bind-html="time.text | highlight: $select.search"></div>
                       </div>
