@@ -63,8 +63,6 @@
                 let vh = window.innerHeight * 0.01;
                 let vw = window.innerWidth * 0.01;
 
-                console.log(vh, vw);
-
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
                 document.documentElement.style.setProperty('--vw', `${vw}px`);
             });
@@ -116,7 +114,7 @@
                       .map(item => item.employeeId);
 
                 employeeIds.forEach(id => {
-                    this.availableTimes[id] = Object.keys(this.employeesMap[id].available)
+                    this.availableTimes[id] = Object.keys((this.employeesMap[id].available || {}))
                         .filter(timestamp => timestamp > moment().unix())
                         .reduce((result, timestamp) => {
 
@@ -240,6 +238,7 @@
             }).then(res => {
                 this.$timeout(() => {
                     this.loading = false;
+                    alert(res.error || 'Booking successfully!');
                 });
 
                 if (res.code === 0) {
@@ -247,8 +246,6 @@
                 }
 
                 this.reset();
-
-                alert(res.error || 'Booking failed! Please retry');
             });
         };
 
@@ -285,18 +282,7 @@
         };
 
         reset() {
-            this.setStep(1);
-
-            this.form = {
-                info: {},
-                confirm: {
-                    term: false,
-                    cookie: false
-                },
-                services: {},
-                payment: {},
-                address: {}
-            };
+            this.$state.reload();
         }
     }
 
