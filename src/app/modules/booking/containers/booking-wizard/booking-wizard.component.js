@@ -180,13 +180,7 @@
                 }, {});
         }
 
-        onDateChange(service) {
-            // const employeeId = this.form.services[service.id].employeeId;
-
-            // const defaultTime = this.employeesMap[employeeId].times[0].value;
-
-            // this.form.services[service.id].time = defaultTime;
-        }
+        onDateChange(service) {}
 
         getEnabledDate(service) {
             const employeeId = this.form.services[service.id].employeeId;
@@ -262,14 +256,15 @@
             }).then(res => {
                 this.$timeout(() => {
                     this.loading = false;
-                    alert(res.error || 'Booking successfully!');
+
+                    if (res.code === 0) {
+                        alert(res.error || 'Booking successfully!');
+                    } else {
+                        alert(res.error || 'Booking failed!');
+                    }
+
+                    this.reset();
                 });
-
-                if (res.code === 0) {
-                    return;
-                }
-
-                this.reset();
             });
         };
 
