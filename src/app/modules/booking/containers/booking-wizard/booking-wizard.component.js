@@ -19,7 +19,7 @@
             };
 
             this.step = 1;
-            this.maxStep = 6;
+            this.maxStep = 7;
 
             this.services = [];
             this.servicesMap = {};
@@ -65,6 +65,8 @@
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
                 document.documentElement.style.setProperty('--vw', `${vw}px`);
             });
+
+            this.setStep(2);
         }
 
         setStep(step) {
@@ -72,8 +74,36 @@
             case 2: {
                 this.loading = true;
 
+                this.BookingService.findGroups().then(groups => {
+                    this.groups = groups;
+                    this.form.groups = this.groups.reduce((result, item) => {
+                        return {
+                            ...result,
+                            [item.id]: {
+                                active: false
+                            }
+                        };
+                    }, {});
+
+                    this.$timeout(() => {
+                        this.loading = false;
+                        this.step = step;
+                    });
+                });
+                break;
+            }
+            case 3: {
+                this.loading = true;
+
                 this.BookingService.findServices().then(services => {
-                    this.services = services;
+                    const activedGroupIds = Object.keys(this.form.groups)
+                          .filter(id => this.form.groups[id].active)
+                          .map(id => +id);
+
+                    this.services = services.filter(service => {
+                        return activedGroupIds.some(id => service.groupIds.includes(id));
+                    });
+
                     this.form.services = this.services.reduce((result, item) => {
                         return {
                             ...result,
@@ -91,7 +121,7 @@
                 break;
             }
 
-            case 3: {
+            case 4: {
                 this.loading = true;
 
                 this.BookingService.findEmployees().then(employees => {
@@ -121,7 +151,7 @@
                 });
                 break;
             }
-            case 4: {
+            case 5: {
                 const employeeIds = Object.values(this.form.services)
                       .filter(item => item.active)
                       .map(item => item.employeeId);
@@ -275,22 +305,26 @@
             }
 
             case 2: {
-                return Object.values(this.form.services).every(item => !item.active);
+                return Object.values(this.form.groups).every(item => !item.active);
             }
 
             case 3: {
-                return Object.values(this.form.services).filter(item => item.active).some(item => !item.employeeId);
+                return Object.values(this.form.services).every(item => !item.active);
             }
 
             case 4: {
-                return Object.values(this.form.services).filter(item => item.active).some(item => !item.time);
+                return Object.values(this.form.services).filter(item => item.active).some(item => !item.employeeId);
             }
 
             case 5: {
-                return !(this.form.confirm.term && this.form.confirm.cookie);
+                return Object.values(this.form.services).filter(item => item.active).some(item => !item.time);
             }
 
             case 6: {
+                return !(this.form.confirm.term && this.form.confirm.cookie);
+            }
+
+            case 7: {
                 return !(form.cardNumber.$valid && form.cardName.$valid && form.cardExpiry.$valid && form.cardCVV.$valid);
             }
 

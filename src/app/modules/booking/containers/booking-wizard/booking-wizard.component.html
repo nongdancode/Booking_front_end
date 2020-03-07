@@ -464,6 +464,17 @@
             <h3>Pick Service</h3>
 
             <div class="list">
+              <div class="list-item service-item clickable" ng-class="{ active: $ctrl.form.groups[item.id].active }"
+                ng-repeat="item in $ctrl.groups"
+                ng-click="$ctrl.form.groups[item.id].active = !$ctrl.form.groups[item.id].active">
+                <span class="text">{{ item.name }}</span>
+              </div>
+            </div>
+          </section>
+          <section ng-switch-when="3">
+            <h3>Pick Service</h3>
+
+            <div class="list">
               <div class="list-item service-item clickable" ng-class="{ active: $ctrl.form.services[item.id].active }"
                 ng-repeat="item in $ctrl.services"
                 ng-click="$ctrl.form.services[item.id].active = !$ctrl.form.services[item.id].active">
@@ -474,7 +485,7 @@
               </div>
             </div>
           </section>
-          <section ng-switch-when="3">
+          <section ng-switch-when="4">
             <h3>Pick Employee</h3>
 
             <div class="list">
@@ -509,7 +520,7 @@
               </div>
             </div>
           </section>
-          <section ng-switch-when="4">
+          <section ng-switch-when="5">
             <h3>Pick Date</h3>
 
             <div class="list">
@@ -559,7 +570,7 @@
               </div>
             </div>
           </section>
-          <section ng-switch-when="5">
+          <section ng-switch-when="6">
             <h4></h4>
             <h3>Summary</h3>
             <div class="summary">
@@ -592,7 +603,7 @@
               </table>
             </div>
           </section>
-          <section ng-switch-when="6">
+          <section ng-switch-when="7">
             <h3>Payment</h3>
             <p class="text-muted" style="margin-bottom: 5px; color: #BB565A; font-weight: bold;">Note: Minimum deposit $20</p>
 
