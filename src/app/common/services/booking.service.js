@@ -7,28 +7,12 @@
 
         services.findGroups = function() {
             return HttpService
-                .get(window.config.baseApiUrl + 'booking/list_groups')
-                .then(res => [
-                    {
-                        id: 1,
-                        name: 'Lash'
-                    },
-                    {
-                        id: 2,
-                        name: 'Wax'
-                    }
-                ]);
+                .get(window.config.baseApiUrl + 'booking/list_groups');
         };
 
         services.findServices = function() {
             return HttpService
-                .get(window.config.baseApiUrl + 'booking/list_services')
-                .then(res => res.map((item, index) => {
-                    return {
-                        ...item,
-                        groupIds: [(index % 2) + 1]
-                    };
-                }));
+                .get(window.config.baseApiUrl + 'booking/list_services');
         };
 
         services.findEmployees = function() {
