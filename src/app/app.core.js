@@ -1,3 +1,3 @@
 window.config = {
-    baseApiUrl: 'http://api.beautysalonappsolution.com/api/'
+    baseApiUrl: 'http://api.bpsgroup.us/api/'
 };
