@@ -699,17 +699,17 @@
         </div>
 
         <div class="actions clearfix">
-	        <ul role="menu" ng-class="{ 'center': $ctrl.step > 4 }">
-	          <li ng-class="{ hidden: $ctrl.step > 4 }">
+	        <ul role="menu" ng-class="{ 'center': $ctrl.step > 5 }">
+	          <li ng-class="{ hidden: $ctrl.step > 5 }">
               <a ng-click="$ctrl.prevStep()" role="menuitem">Back</a>
 	          </li>
-	          <li ng-class="{ hidden: $ctrl.step > 4, disabled: $ctrl.disableNext(templateForm) }">
+	          <li ng-class="{ hidden: $ctrl.step > 5, disabled: $ctrl.disableNext(templateForm) }">
               <a ng-click="$ctrl.nextStep()" role="menuitem">Continue</a>
 	          </li>
-	          <li class="hidden" ng-class="{ show: $ctrl.step === 5 , disabled: $ctrl.disableNext(templateForm) }">
+	          <li class="hidden" ng-class="{ show: $ctrl.step === 6 , disabled: $ctrl.disableNext(templateForm) }">
               <a ng-click="$ctrl.book()" role="menuitem">Proceed to checkout</a>
 	          </li>
-            <li class="hidden" ng-class="{ show: $ctrl.step === 6 , disabled: $ctrl.disableNext(templateForm) }">
+            <li class="hidden" ng-class="{ show: $ctrl.step === 7 , disabled: $ctrl.disableNext(templateForm) }">
               <a ng-click="$ctrl.charge()" role="menuitem">Complete Transaction</a>
 	          </li>
 	        </ul>
