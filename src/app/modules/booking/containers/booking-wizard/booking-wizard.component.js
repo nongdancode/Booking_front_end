@@ -65,6 +65,8 @@
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
                 document.documentElement.style.setProperty('--vw', `${vw}px`);
             });
+
+            this.setStep(2);
         }
 
         setStep(step) {
@@ -159,11 +161,9 @@
                 employeeIds.forEach(id => {
                     const serviceId = this.employeesMap[id].service_id;
 
-                    const firstAvailable = this.employeesMap[id].available
-                          .map(timestamp => timestamp.start)
-                          .filter(timestamp => moment.unix(timestamp) > moment().unix())[0];
+                    const firstAvailable = (Object.keys(this.employeesMap[id].times) || [])[0];
 
-                    this.form.services[serviceId].date = moment.unix(firstAvailable).valueOf();
+                    this.form.services[serviceId].date = +firstAvailable;
                 });
 
                 this.step = step;
@@ -177,11 +177,11 @@
 
         generateTimeRange(employee, stepping) {
             return (employee.available || [])
-                .filter(timestamp => timestamp.start > moment().unix())
+                .filter(timestamp => timestamp.start < timestamp.end && timestamp.start > moment().unix())
                 .reduce((result, timestamp) => {
                     const beginOfDay = moment.unix(timestamp.start).startOf('day').valueOf();
 
-                    const availableOptions = [];
+                    const availableOptions = result[beginOfDay] || [];
 
                     let start = moment.unix(timestamp.start);
                     let end = moment.unix(timestamp.end);
@@ -219,8 +219,6 @@
         getAvailableTimes(service) {
             const employeeId = this.form.services[service.id].employeeId;
             const date = this.form.services[service.id].date.startOf('day').valueOf();
-
-            console.log(date, this.employeesMap[employeeId].times);
 
             return this.employeesMap[employeeId].times[date];
         }
