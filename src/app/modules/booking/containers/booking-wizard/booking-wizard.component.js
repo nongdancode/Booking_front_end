@@ -65,6 +65,8 @@
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
                 document.documentElement.style.setProperty('--vw', `${vw}px`);
             });
+
+            this.setStep(2);
         }
 
         setStep(step) {
@@ -124,6 +126,7 @@
 
                 this.BookingService.findEmployees().then(employees => {
                     this.employees = employees
+                        .filter(employee => Object.keys(this.servicesMap).includes(employee.service_id))
                         .reduce((result, employee) => {
                             if (!Object.keys(employee.available || {}).length) {
                                 return result;
