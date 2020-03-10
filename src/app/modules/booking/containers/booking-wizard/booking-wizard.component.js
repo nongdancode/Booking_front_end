@@ -65,8 +65,6 @@
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
                 document.documentElement.style.setProperty('--vw', `${vw}px`);
             });
-
-            this.setStep(2);
         }
 
         setStep(step) {
@@ -76,6 +74,7 @@
 
                 this.BookingService.findGroups().then(groups => {
                     this.groups = groups;
+
                     this.form.groups = this.groups.reduce((result, item) => {
                         return {
                             ...result,
@@ -128,7 +127,7 @@
                     this.employees = employees
                         .filter(employee => Object.keys(this.servicesMap).includes(employee.service_id))
                         .reduce((result, employee) => {
-                            if (!Object.keys(employee.available || {}).length) {
+                            if (!(employee.available || []).length) {
                                 return result;
                             }
 
@@ -160,12 +159,11 @@
                 employeeIds.forEach(id => {
                     const serviceId = this.employeesMap[id].service_id;
 
-                    const defaultDate = moment.unix(
-                        Object.keys(this.employeesMap[id].available)
-                            .filter(timestamp => timestamp > moment().unix())[0].valueOf()
-                    );
+                    const firstAvailable = this.employeesMap[id].available
+                          .map(timestamp => timestamp.start)
+                          .filter(timestamp => moment.unix(timestamp) > moment().unix())[0];
 
-                    this.form.services[serviceId].date = defaultDate;
+                    this.form.services[serviceId].date = moment.unix(firstAvailable).valueOf();
                 });
 
                 this.step = step;
@@ -178,35 +176,34 @@
         };
 
         generateTimeRange(employee, stepping) {
-            return Object.keys((employee.available || {}))
-                .filter(timestamp => timestamp > moment().unix())
+            return (employee.available || [])
+                .filter(timestamp => timestamp.start > moment().unix())
                 .reduce((result, timestamp) => {
+                    const beginOfDay = moment.unix(timestamp.start).startOf('day').valueOf();
 
                     const availableOptions = [];
 
-                    employee.available[timestamp].forEach(({start_time, end_time}) => {
-                        let start = moment.unix(start_time);
-                        let end = moment.unix(end_time);
+                    let start = moment.unix(timestamp.start);
+                    let end = moment.unix(timestamp.end);
 
-                        while (moment(start).add(stepping, 'minutes') <= end) {
-                            let _start = moment(start);
-                            let _end = moment(start).add(stepping, 'minutes');
+                    while (moment(start).add(stepping, 'minutes') <= end) {
+                        let _start = moment(start);
+                        let _end = moment(start).add(stepping, 'minutes');
 
-                            availableOptions.push({
-                                text: `${_start.format('hh:mm A')}`,
-                                value: {
-                                    start: _start,
-                                    end: _end
-                                }
-                            });
+                        availableOptions.push({
+                            text: `${_start.format('hh:mm A')}`,
+                            value: {
+                                start: _start,
+                                end: _end
+                            }
+                        });
 
-                            start = moment(start).add(stepping, 'minutes');
-                        }
-                    });
+                        start = moment(start).add(stepping, 'minutes');
+                    }
 
                     return {
                         ...result,
-                        [moment.unix(timestamp).startOf('day').valueOf()]: availableOptions
+                        [beginOfDay]: availableOptions
                     };
                 }, {});
         }
@@ -222,6 +219,8 @@
         getAvailableTimes(service) {
             const employeeId = this.form.services[service.id].employeeId;
             const date = this.form.services[service.id].date.startOf('day').valueOf();
+
+            console.log(date, this.employeesMap[employeeId].times);
 
             return this.employeesMap[employeeId].times[date];
         }
