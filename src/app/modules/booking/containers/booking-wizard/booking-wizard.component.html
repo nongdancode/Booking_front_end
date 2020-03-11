@@ -181,6 +181,11 @@
     border-color: #8eb852;
   }
 
+  .list-item.error {
+    border-width: 1px;
+    border-color: red;
+  }
+
   .img > img {
     width:100%;
     height:100%;
@@ -525,6 +530,7 @@
 
             <div class="list">
               <div class="list-item flex space-between"
+                ng-class="{ error: $ctrl.isCurrentServiceOverlap(item.id) }"
                 ng-repeat="item in $ctrl.services"
                 ng-if="$ctrl.form.services[item.id].active">
 
@@ -568,6 +574,8 @@
                   </ui-select>
                 </div>
               </div>
+
+              <em ng-if="$ctrl.getOverlap().validateOverlap.length" style="color: red">Services are overlapped time. Please repick.</em>
             </div>
           </section>
           <section ng-switch-when="6">

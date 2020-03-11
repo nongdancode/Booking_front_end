@@ -11,6 +11,7 @@
 
         $onInit() {
             this.loading = false;
+            this.error = '';
 
             this.util = {
                 keys: Object.keys,
@@ -65,6 +66,8 @@
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
                 document.documentElement.style.setProperty('--vw', `${vw}px`);
             });
+
+            this.setStep(2);
         }
 
         setStep(step) {
@@ -107,6 +110,7 @@
                         return {
                             ...result,
                             [item.id]: {
+                                id: item.id,
                                 active: false
                             }
                         };
@@ -294,6 +298,35 @@
             });
         };
 
+        isOverlap(a, b) {
+            return (a.start < b.start && a.end > b.start)
+                || (a.start < b.end && a.end > b.end)
+                || (a.start >= b.start && a.end <= b.end);
+        }
+
+
+        isCurrentServiceOverlap(id) {
+            const { validateOverlap } = this.getOverlap();
+
+            return validateOverlap.some(overlap => overlap.id === id);
+        }
+
+        getOverlap() {
+            const activedServices = Object.values(this.form.services)
+                  .filter(item => item.active);
+
+            const validateTime = !activedServices
+                  .every(item => item.time);
+
+            const validateOverlap = activedServices
+                  .filter(item => item.time)
+                  .filter(item => activedServices
+                          .filter(inner => inner.time && inner.id !== item.id)
+                          .some(inner => this.isOverlap(item.time, inner.time)));
+
+            return { validateTime, validateOverlap };
+        }
+
         disableNext(form, step=this.step) {
             switch (step) {
             case 1: {
@@ -313,7 +346,9 @@
             }
 
             case 5: {
-                return Object.values(this.form.services).filter(item => item.active).some(item => !item.time);
+                const { validateTime, validateOverlap } = this.getOverlap();
+
+                return validateTime || validateOverlap.length;
             }
 
             case 6: {
