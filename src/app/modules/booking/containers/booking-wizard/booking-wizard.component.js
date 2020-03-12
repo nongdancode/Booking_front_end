@@ -11,7 +11,6 @@
 
         $onInit() {
             this.loading = false;
-            this.error = '';
 
             this.util = {
                 keys: Object.keys,
