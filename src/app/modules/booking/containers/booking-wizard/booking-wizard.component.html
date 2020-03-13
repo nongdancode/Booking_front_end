@@ -511,7 +511,7 @@
                     <ui-select-match placeholder="Select a employee">
                       {{ $select.selected.name }}
                     </ui-select-match>
-                    <ui-select-choices repeat="employee.id as employee in $ctrl.employees | filter:{ service_id: item.id } | propsFilter: { name: $select.search }">
+                    <ui-select-choices repeat="employee.id as employee in $ctrl.employees | filter:{ service_id: item.id.toString() }:true | propsFilter: { name: $select.search }">
                       <div class="flex-item employee-item">
                         <div class="img">
                           <img alt="" ng-src="{{ employee.img }}"/>
