@@ -2,9 +2,10 @@
     const module = angular.module('module.booking.containers.check-in', []);
 
     class CheckInComponent {
-        constructor($scope, $sce, BookingService) {
+        constructor($scope, $sce, $state, BookingService) {
             this.$scope = $scope;
             this.$sce = $sce;
+            this.$state = $state;
             this.BookingService = BookingService;
         }
 
@@ -22,7 +23,7 @@
         done() {
             this.BookingService.checkin(this.form.info).then(res => {
                 alert('Check-in successfully!');
-            });
+            }).finally(() => this.$state.reload());
         };
     }
 
