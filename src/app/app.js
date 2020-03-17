@@ -29,6 +29,7 @@ angular.module('app.modules', [
 angular.module('app', [
     'app.templates',
     'app.third-party',
+    // 'app.mock',
     'app.resources',
     'app.services',
     'app.directives',
