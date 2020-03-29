@@ -178,7 +178,7 @@
 
         generateTimeRange(employee, stepping) {
             return (employee.available || [])
-                .filter(timestamp => timestamp.start < timestamp.end && timestamp.start > moment().unix())
+                .filter(timestamp => timestamp.start < timestamp.end && timestamp.end > moment().unix())
                 .reduce((result, timestamp) => {
                     const beginOfDay = moment.unix(timestamp.start).startOf('day').valueOf();
 
