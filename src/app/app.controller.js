@@ -3,6 +3,5 @@
     .controller('AppController', AppController);
 
   function AppController($scope) {
-    $scope.title = "Lash Client";
   };
 })();
