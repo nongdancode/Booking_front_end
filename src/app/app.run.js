@@ -1,7 +1,14 @@
 (function() {
   angular
     .module('app.run', [])
-    .run(authentication);
+    .run(config);
 
-  function authentication($rootScope, $state, $location) {};
+  function config($rootScope, ConfigService) {
+    window.appConfig = {};
+
+    ConfigService.getConfig()
+      .then(config => {
+        window.appConfig = config;
+      });
+  };
 })();

@@ -10,6 +10,8 @@
         }
 
         $onInit() {
+            this.window = window;
+
             this.loading = false;
 
             this.util = {

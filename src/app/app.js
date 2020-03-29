@@ -16,6 +16,7 @@ angular.module('app.resources', []);
 
 angular.module('app.services', [
     'service.http',
+    'service.config',
     'service.booking',
     'service.utility'
 ]);

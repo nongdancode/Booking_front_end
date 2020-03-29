@@ -729,6 +729,8 @@
 
 <div class="footer-container">
   <div class="footer">
-    Promotion: DISCOUNT 20% ALL SERVICE FOR NEW CUSTOMERS
+    <span ng-style="{ color: $ctrl.window.appConfig['banner-color'] }">
+      {{ $ctrl.window.appConfig['banner-text'] }}
+    </span>
   </div>
 </div>
