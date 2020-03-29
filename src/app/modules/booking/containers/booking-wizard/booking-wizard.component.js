@@ -128,7 +128,7 @@
 
                 this.BookingService.findEmployees().then(employees => {
                     this.employees = employees
-                        .filter(employee => Object.keys(this.servicesMap).includes(employee.service_id))
+                        .filter(employee => this.servicesMap[employee.service_id.toString()])
                         .reduce((result, employee) => {
                             if (!(employee.available || []).length) {
                                 return result;
