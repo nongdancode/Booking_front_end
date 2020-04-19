@@ -6,39 +6,52 @@
         const services = {};
 
         services.findGroups = function() {
-            return HttpService
-                .get(window.config.baseApiUrl + 'booking/list_groups');
+            return HttpService.get(window.config.baseApiUrl + 'booking/list_groups', {}, {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         services.findServices = function() {
-            return HttpService
-                .get(window.config.baseApiUrl + 'booking/list_services');
+            return HttpService.get(window.config.baseApiUrl + 'booking/list_services', {}, {
+                errorHandleStrategy: HttpService.strategy.show
+            }).then(res => res.map((item, index) => {
+                return {
+                    ...item,
+                    groupIds: [(index % 2) + 1]
+                };
+            }));
         };
 
         services.findEmployees = function() {
-            return HttpService
-                .get(window.config.baseApiUrl + 'booking/list_employee')
-                .then(res => {
-                    return res.map(row => {
-                        return {
-                            ...row,
-                            employee_id: row.id,
-                            id: row.id + '_' + row.service_id
-                        };
-                    });
+            return HttpService.get(window.config.baseApiUrl + 'booking/list_employee', {}, {
+                errorHandleStrategy: HttpService.strategy.show
+            }).then(res => {
+                return res.map(row => {
+                    return {
+                        ...row,
+                        employee_id: row.id,
+                        id: row.id + '_' + row.service_id
+                    };
                 });
+            });
         };
 
         services.confirm = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'booking/confirm', data);
+            return HttpService.post(window.config.baseApiUrl + 'booking/confirm', data, {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         services.charge = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'booking/charge', data);
+            return HttpService.post(window.config.baseApiUrl + 'booking/charge', data, {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         services.checkin = function(data) {
-            return HttpService.post(window.config.baseApiUrl + 'checkin/customer', data);
+            return HttpService.post(window.config.baseApiUrl + 'checkin/customer', data, {
+                errorHandleStrategy: HttpService.strategy.show
+            });
         };
 
         return services;

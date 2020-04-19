@@ -1,6 +1,7 @@
 angular.module('app.third-party', [
     'ngSanitize',
     'ui.router',
+    'ui.bootstrap',
     'ui.select',
     'ui.mask',
     'ui-datetimepicker'
@@ -17,6 +18,7 @@ angular.module('app.resources', []);
 angular.module('app.services', [
     'service.http',
     'service.config',
+    'service.modal',
     'service.booking',
     'service.utility'
 ]);
