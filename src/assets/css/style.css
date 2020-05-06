@@ -1,12 +1,12 @@
 @font-face {
   font-family: "Lato-Regular";
-  src: url("/assets/fonts/lato/Lato-Regular.ttf"); }
+  src: url("assets/fonts/lato/Lato-Regular.ttf"); }
 @font-face {
   font-family: "Lato-Black";
-  src: url("/assets/fonts/lato/Lato-Black.ttf"); }
+  src: url("assets/fonts/lato/Lato-Black.ttf"); }
 @font-face {
   font-family: "Lato-Bold";
-  src: url("/assets/fonts/lato/Lato-Bold.ttf"); }
+  src: url("assets/fonts/lato/Lato-Bold.ttf"); }
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
