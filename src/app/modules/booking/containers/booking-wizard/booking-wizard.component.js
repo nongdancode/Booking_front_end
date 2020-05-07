@@ -193,7 +193,7 @@
                         let _end = moment(start).add(stepping, 'minutes');
 
                         availableOptions.push({
-                            text: `${_start.format('hh:mm A')}`,
+                            text: `${_start.tz(moment().tz()).format('hh:mm A')}`,
                             value: {
                                 start: _start,
                                 end: _end
