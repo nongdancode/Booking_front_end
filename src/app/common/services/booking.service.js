@@ -33,19 +33,19 @@
 
         services.confirm = function(data) {
             return HttpService.post(window.config.baseApiUrl + 'booking/confirm', data, {
-                errorHandleStrategy: HttpService.strategy.show
+                errorHandleStrategy: HttpService.strategy.rest
             });
         };
 
         services.charge = function(data) {
             return HttpService.post(window.config.baseApiUrl + 'booking/charge', data, {
-                errorHandleStrategy: HttpService.strategy.show
+                errorHandleStrategy: HttpService.strategy.rest
             });
         };
 
         services.checkin = function(data) {
             return HttpService.post(window.config.baseApiUrl + 'checkin/customer', data, {
-                errorHandleStrategy: HttpService.strategy.show
+                errorHandleStrategy: HttpService.strategy.rest
             });
         };
 

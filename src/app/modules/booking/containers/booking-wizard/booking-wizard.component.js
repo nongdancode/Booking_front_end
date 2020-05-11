@@ -264,11 +264,10 @@
                         this.loading = false;
                         this.nextStep();
                     });
-                })
-                .catch(err => {
+                }).catch(res => {
                     this.reset();
 
-                    this.ModalService.alert('Booking failed! Please retry');
+                    this.ModalService.error(res.error || 'Booking failed! Please retry');
                 });
         };
 
@@ -285,10 +284,12 @@
                 this.$timeout(() => {
                     this.loading = false;
 
-                    this.ModalService.alert(res.error || 'Booking successfully!');
-
-                    this.reset();
+                    this.ModalService.success('Booking successfully!');
                 });
+            }).catch(res => {
+                this.reset();
+
+                this.ModalService.error(res.error || 'Booking failed! Please retry');
             });
         };
 
@@ -360,6 +361,7 @@
         };
 
         reset() {
+            this.loading = false;
             this.$state.reload();
         }
     }
