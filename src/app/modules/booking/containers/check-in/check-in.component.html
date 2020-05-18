@@ -307,8 +307,8 @@
         <img class="logo-2" alt="Logo" src="assets/images/logo-1.png"/>
       </div>
       <div class="block">
-        <div class="content">
-          <section>
+        <div class="content" ng-switch="$ctrl.step">
+          <section ng-switch-when="1">
             <h4></h4>
             <h3>Check in</h3>
             <div class="form-row">
@@ -328,21 +328,42 @@
                   placeholder="Phone Number" name="phone" ng-model="$ctrl.form.info.phone" required>
               </div>
             </div>
+
+            <div class="confirm">
+              <label><input ng-model="$ctrl.form.confirm.term" type="checkbox" /> I have read and understand the <a href="/#!/term-of-service" target="_blank">Privacy policy</a></label>
+              <label><input ng-model="$ctrl.form.confirm.cookie" type="checkbox" /> I have read and agree to the <a href="/#!/term-of-service" target="_blank">Term Of Use</a> and <a href="/#!/term-of-service" target="_blank">Cookies Policy</a></label>
+            </div>
+
+            <div class="actions clearfix">
+              <ul role="menu" class="step-4">
+                <li class="hidden"></li>
+		            <li ng-class="{ disabled: templateForm.$invalid || !($ctrl.form.confirm.term && $ctrl.form.confirm.cookie) }">
+                  <a ng-click="$ctrl.checkin()" role="menuitem">Check in</a>
+		            </li>
+              </ul>
+            </div>
           </section>
-        </div>
 
-        <div class="confirm">
-          <label><input ng-model="$ctrl.form.confirm.term" type="checkbox" /> I have read and understand the <a href="/#!/term-of-service" target="_blank">Privacy policy</a></label>
-          <label><input ng-model="$ctrl.form.confirm.cookie" type="checkbox" /> I have read and agree to the <a href="/#!/term-of-service" target="_blank">Term Of Use</a> and <a href="/#!/term-of-service" target="_blank">Cookies Policy</a></label>
-        </div>
+          <section ng-switch-when="2">
+            <h4></h4>
+            <h3>Fill in to complete check-in</h3>
+            <div class="form-row">
+              <div class="form-holder w-100">
+                <i class="zmdi zmdi-account"></i>
 
-        <div class="actions clearfix">
-          <ul role="menu" class="step-4">
-            <li class="hidden"></li>
-		        <li ng-class="{ disabled: templateForm.$invalid || !($ctrl.form.confirm.term && $ctrl.form.confirm.cookie) }">
-              <a ng-click="$ctrl.done()" role="menuitem">Check in</a>
-		        </li>
-          </ul>
+                <input datetimepicker type="text" class="form-control" ng-class="{ error: templateForm.birthday.$touched && templateForm.birthday.$invalid }"
+                  placeholder="Birthday" name="birthday" ng-model="$ctrl.form.info.birthday" required>
+              </div>
+            </div>
+            <div class="actions clearfix">
+              <ul role="menu" class="step-4">
+                <li class="hidden"></li>
+		            <li ng-class="{ disabled: templateForm.$invalid }">
+                  <a ng-click="$ctrl.done()" role="menuitem">Check in</a>
+		            </li>
+              </ul>
+            </div>
+          </section>
         </div>
       </div>
     </form>
