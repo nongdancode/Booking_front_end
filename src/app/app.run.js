@@ -15,7 +15,7 @@
           document.body.innerHTML = `<div class="alert alert-warning center-block" style="width: 80%;">${text}</div>`;
         }
 
-        moment.tz.setDefault(config['timezone']);
+        moment.tz.setDefault(config['timezone'] || 'America/Chicago');
       });
   };
 })();
