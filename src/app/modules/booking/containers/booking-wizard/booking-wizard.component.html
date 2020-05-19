@@ -429,6 +429,7 @@
     align-items: center;
 
     height: 100px;
+    width: 100%;
   }
 </style>
 
@@ -545,7 +546,7 @@
                   </div>
                 </div>
 
-                <div class="flex flex-item" style="justify-content: flex-end">
+                <div class="flex flex-item" style="justify-content: flex-end; width: 40%;">
                   <div class="input-group input-date-time-picker" datetimepicker
                     ng-model="$ctrl.form.services[item.id].date"
                     on-change="$ctrl.onDateChange(item)"

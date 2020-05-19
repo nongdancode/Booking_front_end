@@ -314,9 +314,10 @@ table.cart .product-remove a {
         width: 74%; } }
 @media (max-width: 767px) {
     body {
-        background: none;
-        height: auto;
-        display: block; }
+      background: none;
+      height: auto;
+      display: block;
+    }
 
     .steps ul li .step-arrow {
         top: 35%; }
