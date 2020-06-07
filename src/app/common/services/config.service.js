@@ -10,10 +10,16 @@
       return HttpService.get(window.config.baseApiUrl + 'booking/configs', {}, {
         errorHandleStrategy: HttpService.strategy.show
       }).then(config => {
-        return (JSON.parse(config) || []).reduce((result, item) => {
+
+        return (Object.values(JSON.parse(config)) || []).reduce((result, section) => {
           return {
             ...result,
-            [item.key]: item.value
+            ...Object.keys(section).reduce((result, key) => {
+              return {
+                ...result,
+                [key]: section[key].value
+              };
+            }, {})
           };
         }, {});
       });

@@ -298,6 +298,15 @@
     width: 100%;
     height: 60px;
   }
+
+  .footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100px;
+    width: 100%;
+  }
 </style>
 <div class="checkin-container">
   <div class="form-wrapper">
@@ -367,6 +376,14 @@
         </div>
       </div>
     </form>
+  </div>
+</div>
+
+<div class="footer-container">
+  <div class="footer">
+    <span ng-style="{ color: $ctrl.window.appConfig['banner-checkin-color'] }">
+      {{ $ctrl.window.appConfig['banner-checkin-text'] }}
+    </span>
   </div>
 </div>
 
