@@ -361,7 +361,10 @@
                 <i class="zmdi zmdi-account"></i>
 
                 <input datetimepicker type="text" class="form-control" ng-class="{ error: templateForm.birthday.$touched && templateForm.birthday.$invalid }"
-                  placeholder="Birthday" name="birthday" ng-model="$ctrl.form.info.birthday" required>
+                  options="{
+                  format: 'DD/MM',
+                  }"
+                  placeholder="Birthday" name="birthday" ng-model="$ctrl.form.info.birthday" required />
               </div>
             </div>
             <div class="actions clearfix">
