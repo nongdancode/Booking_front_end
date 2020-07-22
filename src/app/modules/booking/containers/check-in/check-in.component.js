@@ -44,7 +44,7 @@
 
       this.BookingService.checkin({
         ...this.form.info,
-        birthday: this.form.info.birthday.unix()
+        birthday: +this.form.info.birthday.unix()
       }).then(res => {
         let message = 'Check-in successfully!';
 
