@@ -10,11 +10,14 @@
       return HttpService.get(window.config.baseApiUrl + 'booking/configs', {}, {
         errorHandleStrategy: HttpService.strategy.show
       }).then(config => {
+        config = JSON.parse(config);
 
-        return (Object.values(JSON.parse(config)) || []).reduce((result, section) => {
+        return (Object.keys(config) || []).reduce((result, key) => {
+          const section = config[key];
+
           return {
             ...result,
-            ...Object.keys(section).reduce((result, key) => {
+            [key]: Object.keys(section).reduce((result, key) => {
               return {
                 ...result,
                 [key]: section[key].value
