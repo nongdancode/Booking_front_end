@@ -41,7 +41,11 @@
     };
 
     done() {
-      this.BookingService.checkin(this.form.info).then(res => {
+
+      this.BookingService.checkin({
+        ...this.form.info,
+        birthday: this.form.info.birthday.unix()
+      }).then(res => {
         let message = 'Check-in successfully!';
 
         if (this.form.info.birthday.date() === moment().date() && this.form.info.birthday.month() === moment().month()) {
