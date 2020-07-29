@@ -29,7 +29,7 @@
     checkin() {
       this.BookingService.checkin(this.form.info).then(res => {
         if (res && res[0].birthday) {
-          alert('Check-in successfully!');
+          this.success(moment(res[0].birthday));
 
           this.$state.reload();
         } else {
@@ -41,21 +41,24 @@
     };
 
     done() {
-
       this.BookingService.checkin({
         ...this.form.info,
         birthday: +this.form.info.birthday.unix()
       }).then(res => {
-        let message = 'Check-in successfully!';
-
-        if (this.form.info.birthday.date() === moment().date() && this.form.info.birthday.month() === moment().month()) {
-          message = 'Happy birthday! Check-in successfully!';
-        }
-
-        alert(message);
+        this.success(this.form.info.birthday);
 
         this.$state.reload();
       });
+    }
+
+    success(date) {
+      let message = 'Check-in successfully!';
+
+      if (date.date() === moment().date() && date.month() === moment().month()) {
+        message = 'Happy birthday! Check-in successfully!';
+      }
+
+      alert(message);
     }
   }
 
